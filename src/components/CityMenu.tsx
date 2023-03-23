@@ -15,17 +15,18 @@ import useCity, { City } from "../hooks/useCity";
 import { Spinner } from "@chakra-ui/react";
 
 interface Props {
+  currentCity: string;
   onClickCity: (city: City) => void;
 }
 
-const CityMenu = ({ onClickCity }: Props) => {
+const CityMenu = ({ currentCity, onClickCity }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cities, error, isLoading } = useCity();
   if (error) return null;
   return (
     <Menu>
       <MenuButton as={Button} onClick={onOpen}>
-        {isLoading ? <Spinner /> : "Select City"}
+        {isLoading ? <Spinner /> : currentCity ? currentCity : "Select City"}
       </MenuButton>
       <Modal isOpen={isOpen} size="6xl" onClose={onClose} motionPreset="scale">
         <ModalOverlay />
@@ -37,7 +38,10 @@ const CityMenu = ({ onClickCity }: Props) => {
               <Button
                 key={city.id}
                 margin={1}
-                onClick={() => onClickCity(city)}
+                onClick={() => {
+                  onClickCity(city);
+                  onClose();
+                }}
               >
                 {city.name}
               </Button>
