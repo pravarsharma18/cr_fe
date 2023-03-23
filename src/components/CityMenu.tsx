@@ -27,7 +27,7 @@ const CityMenu = ({ onClickCity }: Props) => {
       <MenuButton as={Button} onClick={onOpen}>
         {isLoading ? <Spinner /> : "Select City"}
       </MenuButton>
-      <Modal isOpen={isOpen} size="full" onClose={onClose}>
+      <Modal isOpen={isOpen} size="6xl" onClose={onClose} motionPreset="scale">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Select City</ModalHeader>
@@ -43,12 +43,6 @@ const CityMenu = ({ onClickCity }: Props) => {
               </Button>
             ))}
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </Menu>
