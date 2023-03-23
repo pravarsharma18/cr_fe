@@ -7,7 +7,7 @@ function App() {
       templateAreas={`"navbar navbar"
                       "sidebar main"`}
     >
-      <GridItem area={"navbar"}>
+      <GridItem area={"navbar"} padding={2}>
         <NavBar />
       </GridItem>
       <GridItem area={"sidebar"}>SideBar</GridItem>
