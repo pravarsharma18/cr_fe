@@ -12,7 +12,7 @@ interface Props {
 
 const CityMenu = ({ currentCity, modalOpen, onClickCity }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { cities, error, isLoading } = useCity();
+  const { data, error, isLoading } = useCity();
   if (error) return <CustomToast message={error} />;
   return (
     <Menu>
@@ -23,7 +23,7 @@ const CityMenu = ({ currentCity, modalOpen, onClickCity }: Props) => {
         isOpen={isOpen || modalOpen}
         onClose={onClose}
         onClickCity={onClickCity}
-        cities={cities}
+        cities={data}
       />
     </Menu>
   );
