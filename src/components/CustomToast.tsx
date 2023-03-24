@@ -1,4 +1,4 @@
-import { useToast } from "@chakra-ui/react";
+import { useToast, Box } from "@chakra-ui/react";
 
 interface Props {
   message: string;
@@ -11,18 +11,22 @@ interface Props {
     | "bottom-right"
     | "bottom-left";
 }
-const Toast = ({
+const CustomToast = ({
   message,
   status = "success",
   position = "top-right",
 }: Props) => {
   const toast = useToast();
-  return toast({
-    title: message,
-    position: position,
-    status: status,
-    isClosable: true,
-  });
+  return (
+    <Box>
+      {toast({
+        title: message,
+        position: position,
+        status: status,
+        isClosable: true,
+      })}
+    </Box>
+  );
 };
 
-export default Toast;
+export default CustomToast;

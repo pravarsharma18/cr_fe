@@ -8,7 +8,7 @@ import {
 import useCity, { City } from "../hooks/useCity";
 import { Spinner } from "@chakra-ui/react";
 import CityModal from "./CityModal";
-import Toast from "./Toast";
+import CustomToast from "./CustomToast";
 
 interface Props {
   currentCity: string;
@@ -18,7 +18,7 @@ interface Props {
 const CityMenu = ({ currentCity, onClickCity }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cities, error, isLoading } = useCity();
-  if (error) return null;
+  if (error) return <CustomToast message={error} />;
   return (
     <Menu>
       <MenuButton as={Button} onClick={onOpen}>
