@@ -1,20 +1,16 @@
 import { HStack, Text, Flex, Box } from "@chakra-ui/react";
-import { useState } from "react";
-import { City } from "../hooks/useCity";
 import CityMenu from "./CityMenu";
 import ColorModeSwitch from "./ColorModeSwitch";
+import { City } from "../hooks/useCity";
+import useSetCity from "../hooks/useSetCity";
 
 const NavBar = () => {
-  // let city = localStorage.getItem("city");
-  // const [cityInLocal, setCityInLocal] = useState(true);
-  // if (!city) {
-  //   setCityInLocal(false);
-  // }
-  const [currentCity, setCurrentCity] = useState("");
+  const { modelOpen, city, setModelOpen, setCity } = useSetCity();
+
   const handelCityClick = (city: City) => {
-    console.log(city);
-    setCurrentCity(city.name);
+    setCity(city.name);
     localStorage.setItem("city", city.name);
+    setModelOpen(false);
   };
   return (
     <HStack justifyContent="space-between">
@@ -22,7 +18,8 @@ const NavBar = () => {
       <Flex paddingX={5}>
         <Box marginX={5}>
           <CityMenu
-            currentCity={currentCity}
+            modalOpen={modelOpen}
+            currentCity={city}
             onClickCity={(city) => handelCityClick(city)}
           />
         </Box>
