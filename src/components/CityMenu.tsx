@@ -3,17 +3,12 @@ import {
   MenuButton,
   Button,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  useToast,
 } from "@chakra-ui/react";
 import useCity, { City } from "../hooks/useCity";
 import { Spinner } from "@chakra-ui/react";
 import CityModal from "./CityModal";
+import Toast from "./Toast";
 
 interface Props {
   currentCity: string;
