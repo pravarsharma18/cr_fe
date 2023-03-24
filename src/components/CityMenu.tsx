@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import useCity, { City } from "../hooks/useCity";
 import { Spinner } from "@chakra-ui/react";
+import CityModal from "./CityModal";
 
 interface Props {
   currentCity: string;
@@ -28,27 +29,12 @@ const CityMenu = ({ currentCity, onClickCity }: Props) => {
       <MenuButton as={Button} onClick={onOpen}>
         {isLoading ? <Spinner /> : currentCity ? currentCity : "Select City"}
       </MenuButton>
-      <Modal isOpen={isOpen} size="6xl" onClose={onClose} motionPreset="scale">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Select City</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {cities.map((city) => (
-              <Button
-                key={city.id}
-                margin={1}
-                onClick={() => {
-                  onClickCity(city);
-                  onClose();
-                }}
-              >
-                {city.name}
-              </Button>
-            ))}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <CityModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onClickCity={onClickCity}
+        cities={cities}
+      />
     </Menu>
   );
 };
